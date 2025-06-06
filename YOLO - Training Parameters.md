@@ -110,10 +110,3 @@ This guide lists all important parameters and hyperparameters used during YOLO m
 - Use data caching and multiprocessing to speed up training.
 
 ---
-
-# 🚀 Example Training Command (CLI) 🧠
-
-```bash
-yolo train model=yolo11l.pt data=custom_data.yaml epochs=300 batch=64 imgsz=640 \
-    optimizer=adam lr0=0.01 weight_decay=0.0005 mosaic=1 mixup=0.5 fliplr=0.5 \
-    device=0 project=YOLO_Training name=gold_coin_bar_exp
