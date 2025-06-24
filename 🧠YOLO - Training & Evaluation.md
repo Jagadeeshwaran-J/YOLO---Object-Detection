@@ -1,8 +1,7 @@
 ---
-
 # 🧠 Understanding YOLO Model Training & Evaluation – Full Notes
-
 ---
+
 
 ## 🔹 1. What are Metrics?
 
@@ -24,6 +23,7 @@
 | **F1 Score**      | Harmonic mean of precision and recall.                                                                               | High values indicate balanced performance |
 
 ---
+
 
 ## 🔹 2. What are Learning Curves?
 
@@ -49,6 +49,7 @@
 * **Precision/Recall** improves or remains consistent
 
 ---
+
 
 ## 🔹 3. How to Know if the Trained YOLO Model is Good or Bad?
 
@@ -133,6 +134,7 @@ yolo task=detect mode=benchmark model=best.pt
 
 ---
 
+
 ## 🔹 4. Overfitting vs. Underfitting
 
 | Situation        | Meaning                                                    | Solution                                           |
@@ -141,6 +143,7 @@ yolo task=detect mode=benchmark model=best.pt
 | **Underfitting** | Model performs poorly on both training and validation      | Use better model, more epochs, clean data          |
 
 ---
+
 
 ## 🔹 5. Final Evaluation Summary
 
@@ -176,5 +179,19 @@ yolo task=detect mode=benchmark model=best.pt
 | Visually accurate predictions    | Wrong, missing, or extra detections   |
 | Classes learned equally well     | Some classes never detected           |
 | Fast enough for your needs       | Slow or laggy detections              |
+
+---
+
+## ✅ Final Decision Guide
+
+| Evaluation Area       | Good Sign                | Bad Sign                   |
+| --------------------- | ------------------------ | -------------------------- |
+| **Loss Curve**        | Decreasing smoothly      | Fluctuating or flat        |
+| **mAP\@0.5**          | > 0.7                    | < 0.5                      |
+| **mAP\@0.5:0.95**     | > 0.5                    | < 0.3                      |
+| **Precision/Recall**  | > 0.8                    | < 0.5                      |
+| **Visual Results**    | Accurate, tight boxes    | Missed or wrong detections |
+| **Class-wise Scores** | All classes detected     | Some classes missing       |
+| **Speed**             | Fast enough for use case | Too slow for real-time     |
 
 ---
