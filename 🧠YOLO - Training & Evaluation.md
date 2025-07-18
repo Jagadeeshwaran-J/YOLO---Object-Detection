@@ -195,3 +195,26 @@ yolo task=detect mode=benchmark model=best.pt
 | **Speed**             | Fast enough for use case | Too slow for real-time     |
 
 ---
+
+## 🧾 What `verbose=True` Shows During YOLO Training
+
+Below is a detailed breakdown of the logs displayed when `verbose=True` is enabled during YOLOv11 training using the Ultralytics package:
+
+| 🧩 **Log Item**         | 📋 **Description**                                                                 |
+|------------------------|-------------------------------------------------------------------------------------|
+| **Epoch**              | Current epoch number out of total epochs                                           |
+| **GPU or CPU**         | Indicates whether GPU or CPU is used (includes GPU memory usage if applicable)     |
+| **Images**             | Number of images used per batch and in total                                       |
+| **Labels**             | Number of bounding boxes (annotations) used per batch                              |
+| **Box Loss**           | Localization loss (how well the predicted boxes fit the actual objects)            |
+| **Cls Loss**           | Classification loss (how accurately classes are predicted)                         |
+| **Dfl Loss**           | Distribution Focal Loss (used in YOLOv8/YOLOv11 for fine-grained box regression)   |
+| **Instances**          | Number of object instances detected per image                                      |
+| **Mean Average Precision**<br>*(mAP@50 & mAP@50-95)* | Evaluates how accurate your model’s detections are                  |
+| **Precision & Recall** | Indicates how well the model balances false positives and false negatives          |
+| **Learning Rate**      | Learning rate applied during the current epoch                                     |
+| **Speed**              | Time taken for data loading, forward pass, backward pass, etc.                     |
+| **Saving Model**       | Shows if the model checkpoint was saved (e.g., `best.pt`, `last.pt`)               |
+| **Validation**         | Validation mAP and loss values computed at the end of each epoch                   |
+
+---
