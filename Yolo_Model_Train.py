@@ -7,7 +7,7 @@ if __name__ == "__main__":
     # Start training the model
     results = model.train(
         # Dataset path (data.yaml should define train/val image paths and class names)
-        data="/mnt/D/Data_Science/Projects/Gold/DATASET/1987_DATASET/data.yaml",
+        data="/data.yaml",
 
         # --- Training Schedule ---
         epochs=300,              # Train for 300 full passes (epochs) through the dataset
