@@ -1,32 +1,36 @@
-# 🚀 YOLOv11 Object Detection Project
+# 🚀 YOLOv11 Custom Object Detection Project
 
-This repository allows you to **train** and **run inference** using the latest **YOLOv11** model from [Ultralytics](https://docs.ultralytics.com). It is designed for custom object detection tasks.
+This repository provides everything you need to **train** and **run inference** on a **YOLOv11** model from [Ultralytics](https://docs.ultralytics.com), specifically for your **custom object detection** tasks.
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```
 .
-├── Yolo_Model_Train.py          # Training script using YOLOv11
-├── Yolo_Model_Inference.py      # Inference script using trained model
-├── data.yaml                    # Dataset configuration file
-├── dataset/                     # Your custom dataset folder
+├── Yolo_Model_Train.py          # Train your custom YOLOv11 model
+├── Image_Inference.py           # Run inference on image folder
+├── Video_Inference.py           # Run inference on a video file
+├── Webcam_Inference.py          # Real-time webcam detection
+├── data.yaml                    # Dataset configuration
+├── dataset/
 │   ├── images/
 │   │   ├── train/
 │   │   └── val/
 │   └── labels/
 │       ├── train/
 │       └── val/
-├── input_images/                # Folder of images for inference
-└── inference_output/            # Output folder for predictions
+├── input-images/                # Test images for inference
+├── video-output/                # Output for video inference
+├── image-output/                # Output for image inference
+└── README.md
 ```
 
 ---
 
 ## ✅ Requirements
 
-Install the required dependency:
+Install Ultralytics:
 
 ```bash
 pip install ultralytics
@@ -36,7 +40,7 @@ pip install ultralytics
 
 ## 📁 Dataset Format
 
-Organize your dataset as follows:
+Your dataset must follow this structure:
 
 ```
 dataset/
@@ -48,13 +52,11 @@ dataset/
     └── val/
 ```
 
-Each image should have a corresponding `.txt` label file in YOLO format.
+Each `.jpg`/`.png` image must have a corresponding `.txt` label file in YOLO format.
 
 ---
 
 ## 📝 Configure `data.yaml`
-
-Create a `data.yaml` file in the root directory:
 
 ```yaml
 path: dataset
@@ -66,49 +68,63 @@ names:
   1: object_1
 ```
 
-- Update `names:` to reflect your own class names.
-- Ensure `path:` points to your dataset folder.
+- Update `names:` with your object class names.
+- Make sure `path:` matches your dataset location.
 
 ---
 
-## 🏋️‍♂️ How to Train the Model
+## 🏋️ Train the Model
 
-Once your dataset and `data.yaml` are ready, run:
+Run the training script:
 
 ```bash
 python Yolo_Model_Train.py
 ```
 
-⚙️ **What you can customize:**
-- Replace `yolo11l.pt` in the script with a different pretrained checkpoint if needed (e.g., `yolo11x.pt` for a larger model).
-- Adjust training settings inside `Yolo_Model_Train.py` like `epochs`, `batch`, or `optimizer`.
+- You can modify the pretrained model (`yolo11l.pt`), epochs, batch size, optimizer, etc.
 
-After training, the best model is saved automatically and exported as an ONNX file.
+> ✅ The best model is saved and exported to ONNX format automatically.
 
 ---
 
-## 🔍 How to Run Inference
+## 🖼️ Run Inference on Images
 
-After training, use the model to make predictions:
-
-1. Put test images into the `input_images/` folder.
-2. Run the script:
+1. Place your test images in `input-images/`
+2. Run:
 
 ```bash
-python Yolo_Model_Inference.py
+python Image_Inference.py
 ```
 
-This will load the `yolo11l.pt` model and run predictions.
-
-✏️ **To customize:**
-- Change the model path in `Yolo_Model_Inference.py` (`model_path = "yolo11l.pt"`) if using a different checkpoint.
-- You can also modify `input_path` to point to a single image like `"image.jpg"` instead of a folder.
+Results will be saved in the `image-output/predict/` folder.
 
 ---
 
-## 📤 Export the Trained Model
+## 🎞️ Run Inference on Video
 
-Your best model is automatically exported to ONNX format at the end of training:
+Place your input video as `input-video.mp4`, then run:
+
+```bash
+python Video_Inference.py
+```
+
+Results will be saved in `video-output/predict/`.
+
+---
+
+## 📷 Real-Time Webcam Inference
+
+Use your system webcam (GPU/CPU will be auto-detected):
+
+```bash
+python Webcam_Inference.py
+```
+
+---
+
+## 📤 Export Trained Model
+
+You can export your model to ONNX format like this:
 
 ```python
 model.export(format="onnx", imgsz=1024)
@@ -118,13 +134,12 @@ model.export(format="onnx", imgsz=1024)
 
 ## 📚 References
 
-- [Ultralytics YOLO Docs](https://docs.ultralytics.com)
+- [Ultralytics Docs](https://docs.ultralytics.com)
 - [YOLO Format Explained](https://docs.ultralytics.com/tasks/detect/#annotating-data)
 
 ---
 
-## 🧠 Tips
+## 💡 Tips
 
-- Use `exist_ok=True` to overwrite old results during re-training or re-inference.
-- You can fine-tune training parameters like `lr0`, `weight_decay`, and `batch` depending on your dataset size.
-
+- Use `exist_ok=True` to overwrite old runs.
+- Tune learning rate, batch size, and augmentations based on your dataset.
