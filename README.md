@@ -4,8 +4,8 @@ This repository contains scripts to **train** and **run inference** using a cust
 
 ## 📦 About
 
-- `train_yolo11l.py`: Script to train the YOLOv11 model using a custom dataset.
-- `run_inference.py`: Script to run inference on images or a folder of images using the trained model.
+- `Yolo_Model_Train.py`: Script to train the YOLOv11 model using a custom dataset.
+- `Yolo_Model_Inference.py`: Script to run inference on images or a folder of images using the trained model.
 - `data.yaml`: Dataset configuration file that defines paths and class names.
 
 ---
@@ -15,7 +15,7 @@ This repository contains scripts to **train** and **run inference** using a cust
 To train your YOLOv11 model:
 
 ```bash
-python train_yolo11l.py
+python Yolo_Model_Train.py
 ```
 
 Make sure your `data.yaml` is configured and your dataset is structured properly.
@@ -27,7 +27,7 @@ Make sure your `data.yaml` is configured and your dataset is structured properly
 To run predictions on an image or a folder of images:
 
 ```bash
-python run_inference.py
+python Yolo_Model_Inference.py
 ```
 
 The predictions will be saved to the `inference_output/predict/` folder.
@@ -66,8 +66,8 @@ train: images/train
 val: images/val
 
 names:
-  0: gold_coin
-  1: gold_bar
+  0: object_name_0
+  1: object_name_1
 ```
 
 ---
